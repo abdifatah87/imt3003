@@ -16,9 +16,6 @@ async def sup_bian(ctx):
 async def spor(ctx):
     await ctx.send('security is a process, not a product')
 
-@client.command()
-async def join(ctx):
-    await ctx.send('join us Esp')
 
 
 client.run(os.getenv('DTOKEN'))

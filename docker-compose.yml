@@ -5,6 +5,6 @@ services:
     build: bot/
     container_name: discord_bot
     env_file:
-      - .env
+      - source .env
     volumes:
       - ./bot/:/usr/src/app
