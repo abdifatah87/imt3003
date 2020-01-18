@@ -4,7 +4,6 @@ import aiohttp
 import asyncio
 import json
 
-client1 = discord.Client()
 client = commands.Bot(command_prefix = '.')
 
 @client.event
@@ -31,5 +30,4 @@ async def hello(ctx):
     ctx.channel = client.get_channel(667785200071081985)
     await ctx.channel.send('message')
 
-#client.loop.create_task(on_message())
 client.run(os.getenv('DTOKEN'))
