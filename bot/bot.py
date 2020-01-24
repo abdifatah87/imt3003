@@ -1,30 +1,21 @@
 import discord, os
 from discord.ext import commands
-import aiohttp
-import asyncio
+import requests
 import json
 
 client = commands.Bot(command_prefix = '.')
 
-timeout = 60*10     #10 minutter timeout
-
 @client.event
 async def on_ready():
     print("bot is ready.")
+    errorChannel = client.get_user(249276619473027082)     #fyll in drift kanal id
+    generalChannel = client.get_user(668547115341053965)
+    checkApache()
 
-async def background_task():
-    await client.wait_until_ready()
-    async with aiohttp.ClientSession() as session:
-        channel = client.get_user('fyll inn id')     #fyll in drift kanal id
-        while not client.is_closed():
-            async with session.get('https://www.vg.no/') as r:
-                if r.status == 200:     #sjekker status paa siden
-                    await channel.send('test')
-                    await asyncio.sleep(timeout)    #Waits for 10 seconds
+    await client.logout()
 
-@client.command()
-async def status(ctx):
-    pass    #gir status på servere
+def checkApache():
+    r = requests.get('http://10.212.141.148')
+    if r.status_code == 200:     #sjekker status paa siden
 
-client.loop.create_task(background_task())
 client.run(os.getenv('DTOKEN'))
