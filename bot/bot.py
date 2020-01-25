@@ -1,4 +1,4 @@
-import discord, os, subprocess
+import discord, os, subprocess, time
 from discord.ext import commands
 import requests
 
